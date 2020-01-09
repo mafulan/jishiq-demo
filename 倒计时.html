@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p>距离你们放假还有：<span></span></p>
+    <script>
+    var oSp = document.getElementsByTagName("span")[0];
+    var oTimeNew = new Date();
+    oTimeNew.setHours(16);
+    oTimeNew.setMinutes(30);
+    oTimeNew.setSeconds(0);
+    // console.log(oTimeNew);
+    clock();
+    var timer = setInterval(clock,1000);
+    function clock(){
+        var iCha = oTimeNew - new Date();
+        oSp.innerHTML = fTime(iCha);
+        iCha <= 0 && clearInterval(timer);
+    }
+    function add0(num){
+        return num<10 ? "0"+num : ""+num;
+    }
+    function fTime(date){
+        var oTime = new Date();
+        var iY = oTime.getFullYear();
+        var iM = oTime.getMonth();
+        var iD = oTime.getDate();
+        var iDay = oTime.getDay();
+        var sW = "";
+        switch(iDay){
+            case 0:sW = "星期日"; break;
+            case 1:sW = "星期一"; break;
+            case 2:sW = "星期二"; break;
+            case 3:sW = "星期三"; break;
+            case 4:sW = "星期四"; break;
+            case 5:sW = "星期五"; break;
+            case 6:sW = "星期六"; break;
+        }
+        var iH = oTime.getHours();
+        var iMi = oTime.getMinutes();
+        var iS = oTime.getSeconds();
+        switch(typeof(date)){
+            case "undefined" : return oTime;
+            case "string" : 
+            switch(date){
+                case "all" : return add0(iY)+"/"+add0(iM+1)+"/"+add0(iD)+" "+sW+" "+add0(iH)+":"+add0(iMi)+":"+add0(iS); 
+                case "date": return add0(iY)+"/"+add0(iM+1)+"/"+add0(iD);
+                case "time": return add0(iH)+":"+add0(iMi)+":"+add0(iS);
+            };
+            case "number" :
+            var iSs = Math.round(date/1000);
+            var iDH = Math.floor(iSs/3600);
+            var iDM = Math.floor(iSs%3600/60);
+            var iDS = iSs%60;
+            return add0(iDH)+":"+add0(iDM)+":"+add0(iDS);
+        }   
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    div{
+        width: 300px;
+        height: 200px;
+        background-color: gray;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        display: none;
+    }
+    span{
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        width: 25px;
+        height: 25px;
+        border: 1px red solid;
+        border-radius: 5px;
+        text-align: center;
+        line-height: 25px;
+        cursor: pointer;
+    }
+    </style>
+</head>
+<body>
+    <div>
+        <span>X</span>
+    </div>
+    <script>
+    var oDiv = document.getElementsByTagName("div")[0];
+    var oSp = document.getElementsByTagName("span")[0];
+    setTimeout(function (){
+        oDiv.style.display = "block";
+        var timer = setTimeout(hiddenDiv,2000);
+        oSp.onclick = function (){
+            hiddenDiv();
+            clearTimeout(timer);
+        }
+    },2000)
+    function hiddenDiv(){
+        oDiv.style.display = "none";
+    }
+    </script>
+</body>
+</html>

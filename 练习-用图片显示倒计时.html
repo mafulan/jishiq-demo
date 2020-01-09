@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text"/>
+    <button>开始倒计时</button>
+    <div>
+        <img src="img/0.JPG" alt="">
+        <img src="img/0.JPG" alt="">
+        <img src="img/0.JPG" alt="">
+        <img src="img/0.JPG" alt="">
+        <img src="img/0.JPG" alt="">
+        <img src="img/0.JPG" alt="">
+        <img src="img/0.JPG" alt="">
+        <img src="img/0.JPG" alt="">
+        <!-- colon -->
+    </div>
+    <script src="myjs.js"></script>
+    <script>
+    var oTe = document.getElementsByTagName("input")[0];
+    var oBtn = document.getElementsByTagName("button")[0];
+    var aImg = document.getElementsByTagName("img");
+    var timer = 0;
+    var sS = ""
+    oBtn.onclick = function (){
+        clearInterval(timer);
+        sS = oTe.value;
+        clock();
+        timer = setInterval(clock,1000);
+    }
+    function clock(){
+        var sTime = fTime(sS--*1000);
+        for(var i=0;i<sTime.length;i++){
+            aImg[i].src = sTime[i]==":" ? "img/colon.JPG" : "img/"+sTime[i]+".JPG";
+        }
+        sS < 0 && clearInterval(timer);
+    }
+    </script>
+</body>
+</html>

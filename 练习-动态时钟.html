@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p></p>
+    <script>
+    var oP = document.getElementsByTagName("p")[0];
+    clock();
+    setInterval(clock,1000);
+    function clock(){
+        var oTime = new Date();
+        var iH = oTime.getHours();
+        var iM = oTime.getMinutes();
+        var iS = oTime.getSeconds();
+        oP.innerHTML = add0(iH)+":"+add0(iM)+":"+add0(iS);
+    }
+    function add0(num){
+        // return num<10 ? "0"+num : ""+num;
+        return (num+"").length<2 ? "0"+num : ""+num;
+    }
+    </script>
+</body>
+</html>

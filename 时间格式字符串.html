@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    var oTime = new Date();
+    var sDate = oTime.toLocaleDateString(); //获取年月日(字符串)
+    var sTime = oTime.toLocaleTimeString(); //获取时分秒(字符串)
+    var sAllTime = oTime.toLocaleString();  //获取年月日时分秒(字符串)
+    console.log(sDate);
+    console.log(sTime);
+    console.log(sAllTime);
+    console.log(fTime("all"));
+    console.log(fTime("date"));
+    console.log(fTime("time"));
+    console.log(fTime());
+    function fTime(date){
+        var oTime = new Date();
+        var iY = oTime.getFullYear();
+        var iM = oTime.getMonth();
+        var iD = oTime.getDate();
+        var iDay = oTime.getDay();
+        var sW = "";
+        switch(iDay){
+            case 0:sW = "星期日"; break;
+            case 1:sW = "星期一"; break;
+            case 2:sW = "星期二"; break;
+            case 3:sW = "星期三"; break;
+            case 4:sW = "星期四"; break;
+            case 5:sW = "星期五"; break;
+            case 6:sW = "星期六"; break;
+        }
+        var iH = oTime.getHours();
+        var iMi = oTime.getMinutes();
+        var iS = oTime.getSeconds();
+        switch(typeof(date)){
+            case "undefined" : return oTime; break;
+            case "string" : 
+            switch(date){
+                case "all" : return add0(iY)+"/"+add0(iM+1)+"/"+add0(iD)+" "+sW+" "+add0(iH)+":"+add0(iMi)+":"+add0(iS); break;
+                case "date": return add0(iY)+"/"+add0(iM+1)+"/"+add0(iD); break;
+                case "time": return add0(iH)+":"+add0(iMi)+":"+add0(iS);  break;
+            };  break;
+            case "number" : 
+            var iSs = Math.round(date/1000);
+            var iDH = Math.floor(iSs/3600);
+            var iDM = Math.floor(iSs%3600/60);
+            var iDS = iSs%60;
+            return add0(iH)+":"+add0(iM)+":"+add0(iS);
+        }   
+    }
+    function add0(num){
+        return num<10 ? "0"+num : ""+num;
+    }
+    </script>
+</body>
+</html>

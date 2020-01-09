@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="common.css"/>
+    <style>
+    ul>li{
+        width: 150px;
+        height: 50px;
+        background-color: #ccc;
+        float: left;
+        text-align: center;
+        line-height: 50px;
+        position: relative;
+    }
+    span{
+        font-size: 26px;
+    }
+    ol{
+        background-color: yellow;
+        line-height: 30px;
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 55px;
+        width: 100%;
+    }
+    </style>
+</head>
+<body>
+    <ul class="clearfix">
+        <li>
+            <span>list1</span>
+            <ol>
+                <li>111</li>
+                <li>222</li>
+                <li>333</li>
+            </ol>
+        </li>
+        <li>
+            <span>list2</span>
+            <ol>
+                <li>111</li>
+                <li>222</li>
+                <li>333</li>
+            </ol>
+        </li>
+        <li>
+            <span>list3</span>
+            <ol>
+                <li>111</li>
+                <li>222</li>
+                <li>333</li>
+            </ol>
+        </li>
+        <li>
+            <span>list4</span>
+            <ol>
+                <li>111</li>
+                <li>222</li>
+                <li>333</li>
+            </ol>
+        </li>
+    </ul>
+    <script>
+    var aSp = document.getElementsByTagName("span");
+    var aOl = document.getElementsByTagName("ol");
+    for(var i=0;i<aSp.length;i++){
+        (function (i){
+            aSp[i].onmouseover = aOl[i].onmouseover = function (){
+                clearTimeout(aOl[i].timer);
+                for(var j=0;j<aOl.length;j++){
+                    aOl[j].style.display = "none";
+                }
+                aOl[i].style.display = "block";
+            }
+            aSp[i].onmouseout = aOl[i].onmouseout = function (){
+                aOl[i].timer = setTimeout(function (){
+                    aOl[i].style.display = "none";
+                },400)
+            }
+        })(i)
+    }
+    </script>
+</body>
+</html>

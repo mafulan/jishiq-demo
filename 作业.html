@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    body{
+        margin: 0;
+    }
+    ul{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        position: relative;
+    }
+    li{
+        width: 50px;
+        height: 50px;
+        background-color: red;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    </style>
+</head>
+<body>
+    <ul>
+
+    </ul>
+    <script src="myjs.js"></script>
+    <script>
+    var oUl = document.getElementsByTagName("ul")[0];
+    var aLi = document.getElementsByTagName("li");
+    var str = "";
+    for(var i = 0;i<20;i++){
+        str += "<li></li>";
+    }
+    oUl.innerHTML = str;
+    for(var i=0;i<20;i++){
+        aLi[i].style.left = i*51+"px";
+    }
+    document.onclick = function (){
+        var i = 0;
+        var timer = setInterval(function (){
+            doMove(aLi[i++],7,500,"top");
+            i==aLi.length && clearInterval(timer);
+        },200)
+    }
+    </script>
+</body>
+</html>

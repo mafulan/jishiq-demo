@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    div{
+        width: 150px;
+        height: 150px;
+        background-color: red;
+        border-radius: 50%;
+        position: absolute;
+        left: 0;
+        top: 100px;
+    }
+    </style>
+</head>
+<body>
+    <div></div>
+    <button>执行动画</button>
+    <script src="myjs.js"></script>
+    <script>
+    var oDiv = document.getElementsByTagName("div")[0];
+    var oBtn = document.getElementsByTagName("button")[0];
+    oBtn.onclick = function (){
+        doMove(oDiv,6,600,"left",function (){
+            doMove(oDiv,6,500,"top",function (){
+                doMove(oDiv,6,0,"left",function (){
+                    doMove(oDiv,4,100,"top",function (){
+                        doMove(oDiv,0.04,0,"opacity");
+                    })
+                })
+            })
+        })
+    }
+    </script>
+</body>
+</html>
